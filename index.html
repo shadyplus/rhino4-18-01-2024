@@ -346,7 +346,83 @@
                      </p>
                   </div>
                  
-                  
+                  <style>
+                     #comments-section {
+               margin-top: 20px;
+             }
+             
+             #comments-list {
+               margin-bottom: 20px;
+             }
+             
+             #comment-form {
+               margin-top: 20px;
+             }
+             
+             /* يمكنك أيضًا تخصيص التصميم وفقًا لاحتياجاتك */
+             
+                 </style>
+                  <script>
+                  function addComment() {
+  // جمع القيم من النموذج
+  var name = document.getElementById('name').value;
+  var comment = document.getElementById('comment').value;
+  var imageInput = document.getElementById('image');
+
+  // قراءة محتوى الصورة باستخدام FileReader
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    var image = e.target.result;
+
+    // إنشاء عنصر تعليق جديد
+    var newComment = document.createElement('div');
+    newComment.className = 'comment';
+
+    // إضافة محتوى التعليق
+    newComment.innerHTML = '<img src="' + image + '" alt="' + name + '"><p><strong>' + name + ':</strong> ' + comment + '</p>';
+
+    // إضافة التعليق الجديد إلى قائمة التعليقات
+    document.getElementById('comments-list').appendChild(newComment);
+
+    // إخفاء حقل الصورة وإعادة تعيين قيمة العرض
+    document.getElementById('image').style.display = 'none';
+    document.getElementById('preview-image').src = '';
+    document.getElementById('preview-image').style.display = 'none';
+  };
+
+  // قراءة الصورة المحددة
+  reader.readAsDataURL(imageInput.files[0]);
+
+  // مسح قيم النموذج
+  document.getElementById('name').value = '';
+  document.getElementById('comment').value = '';
+  imageInput.value = ''; // إعادة تعيين حقل الصورة للسماح باختيار نفس الصورة مرة أخرى
+}
+
+                 </script>
+                 <br><br>
+                  <div id="comments-section">
+                     <!-- <h2>новый комментарии добавлен тут</h2> -->
+                     <div id="comments-list">
+                       <!-- عرض التعليقات الموجودة بالفعل -->
+                       <!-- يمكنك استخدام لغة البرمجة لجلب التعليقات من قاعدة البيانات أو أي مكان آخر -->
+                     </div>
+                 
+                     <!-- نموذج إضافة تعليق -->
+                     <form id="comment-form">
+                        <label for="name">Имя :</label>
+                        <input type="text" id="name" name="name" required>
+                      
+                        <label for="comment">коммент:</label>
+                        <textarea id="comment" name="comment" required></textarea>
+                      
+                        <label for="image">фото :</label>
+                        <input type="file" id="image" name="image" accept="image/*" required>
+                        <img id="preview-image" src="#" alt="توضيح الصورة" style="max-width: 100%; display: none;">
+                      
+                        <button type="button" onclick="addComment()">добавь комментарии  </button>
+                      </form>
+                   </div>
                </div>
             </article>
            

@@ -1465,9 +1465,11 @@ tbody td {
 
 #main-container img {
   display: table;
-  width: auto;
-  margin: 0px auto;
-  max-width: 100%;
+    width: auto;
+    /* margin: 0px auto; */
+    max-width: 100%;
+    width: 60px;
+
 }
 
 @media (max-width: 991px) {}
